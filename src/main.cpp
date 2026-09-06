@@ -1,23 +1,8 @@
 #include <Arduino.h>
 
-#include "Config/HardwareConfig.h"
-#include "Drivers/Esp32Gpio.h"
-#include "Infrastructure/MosfetActuator.h"
-#include "Application/IrrigationController.h"
+#include "Drivers/CapacitiveSoilMoistureSensor.h"
 
-
-Esp32Gpio mosfetTrig(
-    HardwareConfig::MOSFET_TRIG_PIN
-);
-
-MosfetActuator pumpActuator(
-    mosfetTrig
-);
-
-IrrigationController irrigation(
-    pumpActuator
-);
-
+CapacitiveSoilMoistureSensor soilSensor;
 
 void setup() {
 
@@ -28,40 +13,32 @@ void setup() {
     Serial.println();
     Serial.println("================================");
     Serial.println("          SOPHIA GAIA");
-    Serial.println("       ACTUATOR SPRINT 01");
+    Serial.println("     SOIL MOISTURE TEST");
     Serial.println("================================");
 
+    Serial.println("Inicializando sensor...");
 
-    // Inicializa GPIO
-    mosfetTrig.begin();
+    if (!soilSensor.begin()) {
 
-    Serial.println("GPIO................ OK");
-    Serial.println("MOSFET ACTUATOR..... OK");
-    Serial.println("IRRIGATION.......... READY");
+        Serial.println("SOIL MOISTURE....... ERRO");
+
+        return;
+    }
+
+    Serial.println("SOIL MOISTURE....... OK");
+    Serial.println("ADC................. READY");
 
     Serial.println("================================");
-    Serial.println("PUMP: OFF");
+    Serial.println("LENDO VALOR RAW");
     Serial.println("================================");
-
 }
-
 
 void loop() {
 
-    Serial.println(">>> LIGANDO BOMBA");
+    int rawValue = soilSensor.readRaw();
 
-    irrigation.start();
+    Serial.print("SOIL MOISTURE RAW... ");
+    Serial.println(rawValue);
 
-    Serial.println("PUMP STATE: ON");
-
-    delay(3000);
-
-
-    Serial.println(">>> DESLIGANDO BOMBA");
-
-    irrigation.stop();
-
-    Serial.println("PUMP STATE: OFF");
-
-    delay(5000);
+    delay(1000);
 }

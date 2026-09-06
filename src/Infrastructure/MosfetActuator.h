@@ -29,6 +29,22 @@ public:
         return state_;
     }
 
+    void setPower(uint8_t percentage) {
+
+        if (percentage > 100) {
+            percentage = 100;
+        }
+
+        const uint8_t signalPercentage =
+            activeHigh_
+                ? percentage
+                : 100 - percentage;
+
+        gpio_.setPwm(signalPercentage);
+
+        state_ = percentage > 0;
+    }
+
 private:
 
     void writeSignal(bool actuatorOn) {
