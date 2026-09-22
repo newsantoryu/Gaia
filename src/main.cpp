@@ -1,44 +1,35 @@
 #include <Arduino.h>
 
-#include "Drivers/CapacitiveSoilMoistureSensor.h"
+#include "Config/HardwareConfig.h"
+#include "Drivers/Esp32Button.h"
 
-CapacitiveSoilMoistureSensor soilSensor;
+Esp32Button pumpButton(
+    HardwareConfig::PUMP_BUTTON_PIN
+);
+
+Esp32Button fanButton(
+    HardwareConfig::FAN_BUTTON_PIN
+);
 
 void setup() {
-
     Serial.begin(115200);
 
-    delay(1000);
+    pumpButton.begin();
+    fanButton.begin();
 
-    Serial.println();
-    Serial.println("================================");
-    Serial.println("          SOPHIA GAIA");
-    Serial.println("     SOIL MOISTURE TEST");
-    Serial.println("================================");
-
-    Serial.println("Inicializando sensor...");
-
-    if (!soilSensor.begin()) {
-
-        Serial.println("SOIL MOISTURE....... ERRO");
-
-        return;
-    }
-
-    Serial.println("SOIL MOISTURE....... OK");
-    Serial.println("ADC................. READY");
-
-    Serial.println("================================");
-    Serial.println("LENDO VALOR RAW");
-    Serial.println("================================");
+    Serial.println("Gaia iniciada.");
 }
 
 void loop() {
 
-    int rawValue = soilSensor.readRaw();
+    pumpButton.update();
+    fanButton.update();
 
-    Serial.print("SOIL MOISTURE RAW... ");
-    Serial.println(rawValue);
+    if (pumpButton.wasPressed()) {
+        Serial.println("Bomba de agua foi acionada");
+    }
 
-    delay(1000);
+    if (fanButton.wasPressed()) {
+        Serial.println("Acionou liga/desliga da FAN");
+    }
 }

@@ -10,6 +10,7 @@
             "includePath": [
                 "/home/victor/dev/iot/Gaia/include",
                 "/home/victor/dev/iot/Gaia/src",
+                "/home/victor/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src",
                 "/home/victor/.platformio/packages/framework-arduinoespressif32-libs/esp32c6/include/newlib/platform_include",
                 "/home/victor/.platformio/packages/framework-arduinoespressif32-libs/esp32c6/include/freertos/config/include",
                 "/home/victor/.platformio/packages/framework-arduinoespressif32-libs/esp32c6/include/freertos/config/include/freertos",
@@ -367,7 +368,6 @@
                 "/home/victor/.platformio/packages/framework-arduinoespressif32/libraries/WebServer/src",
                 "/home/victor/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src",
                 "/home/victor/.platformio/packages/framework-arduinoespressif32/libraries/WiFiProv/src",
-                "/home/victor/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src",
                 "/home/victor/.platformio/packages/framework-arduinoespressif32/libraries/Zigbee/src",
                 ""
             ],
@@ -376,6 +376,7 @@
                 "path": [
                     "/home/victor/dev/iot/Gaia/include",
                     "/home/victor/dev/iot/Gaia/src",
+                    "/home/victor/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src",
                     "/home/victor/.platformio/packages/framework-arduinoespressif32-libs/esp32c6/include/newlib/platform_include",
                     "/home/victor/.platformio/packages/framework-arduinoespressif32-libs/esp32c6/include/freertos/config/include",
                     "/home/victor/.platformio/packages/framework-arduinoespressif32-libs/esp32c6/include/freertos/config/include/freertos",
@@ -733,7 +734,6 @@
                     "/home/victor/.platformio/packages/framework-arduinoespressif32/libraries/WebServer/src",
                     "/home/victor/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src",
                     "/home/victor/.platformio/packages/framework-arduinoespressif32/libraries/WiFiProv/src",
-                    "/home/victor/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src",
                     "/home/victor/.platformio/packages/framework-arduinoespressif32/libraries/Zigbee/src",
                     ""
                 ]
